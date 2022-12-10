@@ -34,9 +34,22 @@
         android:id="@+id/btn_attendance"
         android:layout_width="271dp"
         android:layout_height="39dp"
+        android:onClick="goToAttendance"
         android:text="ATTENDANCE"
-        app:layout_constraintBottom_toTopOf="@+id/text_home"
+        app:layout_constraintBottom_toTopOf="@+id/btn_lectureschedule"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_home" />
+
+    <Button
+        android:id="@+id/btn_lectureschedule"
+        android:layout_width="271dp"
+        android:layout_height="39dp"
+        android:onClick="goToLectureSchedule"
+        android:text="LECTURE SCHEDULE"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_scanQr" />
+        app:layout_constraintTop_toBottomOf="@+id/text_home" />
 </androidx.constraintlayout.widget.ConstraintLayout>

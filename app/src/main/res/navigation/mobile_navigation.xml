@@ -9,7 +9,14 @@
         android:id="@+id/nav_home"
         android:name="com.example.attendancefp.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_attendanceFragment"
+            app:destination="@id/attendanceFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_lectureSchedule"
+            app:destination="@id/lectureSchedule" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -22,4 +29,14 @@
         android:name="com.example.attendancefp.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/attendanceFragment"
+        android:name="com.example.attendancefp.ui.attendance.AttendanceFragment"
+        android:label="fragment_attendance"
+        tools:layout="@layout/fragment_attendance" />
+    <fragment
+        android:id="@+id/lectureSchedule"
+        android:name="com.example.attendancefp.ui.lectures.LectureSchedule"
+        android:label="fragment_lecture_schedule"
+        tools:layout="@layout/fragment_lecture_schedule" />
 </navigation>
