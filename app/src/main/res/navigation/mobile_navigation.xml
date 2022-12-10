@@ -39,4 +39,8 @@
         android:name="com.example.attendancefp.ui.lectures.LectureSchedule"
         android:label="fragment_lecture_schedule"
         tools:layout="@layout/fragment_lecture_schedule" />
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.example.attendancefp.ui.about.AboutFragment"
+        android:label="@string/menu_about" />
 </navigation>
