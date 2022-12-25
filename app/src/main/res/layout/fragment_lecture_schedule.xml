@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.lectures.LectureSchedule">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
+        android:id="@+id/btton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        />
+
+    <ListView
+        android:id="@+id/lst"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="lecture schedule" />
+        android:paddingLeft="10dp"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textAlignment="center">
+
+    </ListView>
+</LinearLayout>
