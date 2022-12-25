@@ -37,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private String txtEmail, txtPassword, txtName;  // for register
-    private FirebaseAuth mAuth;
+    public static FirebaseAuth mAuth;
 
-    private FirebaseUser mUser;  //for login
+    public static FirebaseUser mUser;  //for login
 
-    private DatabaseReference mReference;
+    private  DatabaseReference mReference;
     private HashMap<String,Object> mData;   //verileri kaydetmek için kullanacağımız map
 
     public HashMap<String,Object> mLectureData;
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         mReference = FirebaseDatabase.getInstance().getReference();
 
         addLecture(); //öğrenciye dersleri ekleme methodunu çağırır
+        addLectureSchedule(); //öğrenciye ders programı ekleme methodunu çağırır
     }
 
     @Override
@@ -205,8 +206,30 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });  //users ta Lecture altına mLEctureData ları eklememize yarıyor bu setValue
+    }
 
+    public void addLectureSchedule()
+    {
+        String[] lectureList={"Mobile Application and Development", "Artifical Intelligence", "Natural Language Processing","Database Management System"};
+        mUser = mAuth.getCurrentUser();  //aktif giriş yapanın bilgilerini alır. Onu hatırlamamızı sağlar
 
+        mLectureData = new HashMap<>();
 
+        mLectureData.put(lectureList[0],"Monday  {9:30-12:10}" );
+        mLectureData.put(lectureList[1],"Tuesday {13:30-15:10}" );
+        mLectureData.put(lectureList[2],"Wednesday {9:30-12:10}" );
+        mLectureData.put(lectureList[3],"Friday {14:30-16:10}" );
+
+        mReference.child("Users").child(mUser.getUid()).child("LectureSchedule")   //users altında uid yi bulup ona ekliyor
+                .setValue(mLectureData)
+                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful())
+                            Toast.makeText(MainActivity.this, "Lecture schedule is succesfuly", Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });  //users ta Lecture altına mLEctureData ları eklememize yarıyor bu setValue
     }
 }
