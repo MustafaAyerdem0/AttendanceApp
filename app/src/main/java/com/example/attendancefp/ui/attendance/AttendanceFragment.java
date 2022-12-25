@@ -53,6 +53,7 @@ public class AttendanceFragment extends Fragment {
 
     public void ListLectureAttendance()
     {
+
         mUser = mAuth.getCurrentUser(); //giriş yapan kullanıcının bilgilerini alıyoruz bu işlemle
 
         //mReference = FirebaseDatabase.getInstance().getReference(); // firebase deki root bölümü alır .

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,8 +26,11 @@ import com.example.attendancefp.databinding.ActivityMainBinding;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -46,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
     public HashMap<String,Object> mLectureData;
 
+    TextView studentNameAndSurnameView;
+    TextView studentEmailView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +71,20 @@ public class MainActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+
+        //nav header daki profile picture, name and email e ulaşmak için
+        View header= navigationView.getHeaderView(0);
+        studentNameAndSurnameView=(TextView) header.findViewById(R.id.studentName);
+        studentEmailView = (TextView) header.findViewById(R.id.studentEmail);
+        System.out.println(studentNameAndSurnameView.getText()); //öğrencinin iism ve soyisim bilgiler
+        System.out.println(studentEmailView.getText()); //öğrencinin email bilgilerini çekmek
+
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_about,R.id.nav_logout)
+                R.id.nav_home,R.id.nav_profile, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_about,R.id.nav_logout)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -87,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         addLecture(); //öğrenciye dersleri ekleme methodunu çağırır
         addLectureSchedule(); //öğrenciye ders programı ekleme methodunu çağırır
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -170,6 +188,11 @@ public class MainActivity extends AppCompatActivity {
                             System.out.println("Kullanıcı Email : "+ mUser.getEmail());
                             System.out.println("Kullanıcı Uid : "+ mUser.getUid());
 
+                            //kullanıcı isim soyisim ve email bilgilerini nav header a yazdır
+
+                            userInfo();
+
+
                         }
                     }).addOnFailureListener(this, new OnFailureListener() {
                         @Override
@@ -182,6 +205,40 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    // nav header da user bilgisi güncelleme login yapana göre
+    public void userInfo()
+    {
+        mUser = mAuth.getCurrentUser();
+
+        System.out.println( "user ınfo ::: "+mReference.child("Users").child(mUser.getUid()).child("userEmail") ) ;
+        mReference= FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid());
+        mReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot snp: snapshot.getChildren())
+                {
+                    System.out.println(snp.getValue());
+                    System.out.println( snp.getKey());
+                    System.out.println(snp.getKey().equals("userName"));
+                    if(snp.getKey().equals("userName"))
+                    {
+                        studentNameAndSurnameView.setText(snp.getValue().toString());
+                        System.out.println("student name= "+ studentNameAndSurnameView);
+                    }else if(snp.getKey().equals("userEmail"))
+                    {
+                        studentEmailView.setText(snp.getValue().toString());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 
     //öğrenciye Firebase üzerinde sahip olduğu dersleri ekler
     public void addLecture()
