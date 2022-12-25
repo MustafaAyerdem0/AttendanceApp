@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mReference;
     private HashMap<String,Object> mData;   //verileri kaydetmek için kullanacağımız map
 
+    public HashMap<String,Object> mLectureData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         //mreference initialize
         mReference = FirebaseDatabase.getInstance().getReference();
 
+        addLecture(); //öğrenciye dersleri ekleme methodunu çağırır
     }
 
     @Override
@@ -101,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     //////////// our Methods
 
 
-    //Register sayfası varmış gib kayıt alır
+    //Register sayfası varmış gibi kayıt alır
     public void register()
     {
         txtEmail="mustafaayerdem@posta.mu.edu.tr";
@@ -165,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                             System.out.println("Kullanıcı Adı : "+ mUser.getDisplayName());
                             System.out.println("Kullanıcı Email : "+ mUser.getEmail());
                             System.out.println("Kullanıcı Uid : "+ mUser.getUid());
+
                         }
                     }).addOnFailureListener(this, new OnFailureListener() {
                         @Override
@@ -175,5 +179,34 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Email and  can not be null!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    //öğrenciye Firebase üzerinde sahip olduğu dersleri ekler
+    public void addLecture()
+    {
+        String[] lectureList={"Mobile Application and Development", "Artifical Intelligence", "Natural Language Processing","Database"};
+        mUser = mAuth.getCurrentUser();  //aktif giriş yapanın bilgilerini alır. Onu hatırlamamızı sağlar
+
+        mLectureData = new HashMap<>();
+
+        for (int i = 0; i < lectureList.length ; i++) {
+            mLectureData.put(lectureList[i],0 );
+        }
+
+        mReference.child("Users").child(mUser.getUid()).child("Lectures")   //users altında uid yi bulup ona ekliyor
+                .setValue(mLectureData)
+                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful())
+                            Toast.makeText(MainActivity.this, "Lecture adding is succesfuly", Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });  //users ta Lecture altına mLEctureData ları eklememize yarıyor bu setValue
+
+
+
     }
 }
