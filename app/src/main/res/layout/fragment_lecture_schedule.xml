@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    >
 
-    <Button
-        android:id="@+id/btton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Lecture Schedule"
+        android:textAlignment="center"
+        android:textColor="#783ECA"
+        android:textSize="47sp"
+        android:background="#ECAFAF"/>
 
     <ListView
         android:id="@+id/lst"
@@ -18,7 +24,10 @@
         android:layout_height="match_parent"
         android:paddingLeft="10dp"
 
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:textAlignment="center">
+
 
     </ListView>
 </LinearLayout>
