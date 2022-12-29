@@ -131,11 +131,6 @@ public class HomeFragment extends Fragment {
                             int value=Integer.parseInt(newValue);
                             int sonvalue=value+1;
 
-
-                            System.out.println(value);
-
-                            System.out.println("------------------"+(Integer.parseInt(snp.getValue().toString())));
-                            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                             hashMap.put(snp.getKey(), sonvalue);
                             mReference.updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
                                 @Override

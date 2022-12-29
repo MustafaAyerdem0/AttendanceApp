@@ -95,23 +95,32 @@ public class MainActivity extends AppCompatActivity {
         //////// our Methods
 
         mAuth = FirebaseAuth.getInstance();
-        register();
-        //mUser = mAuth.getCurrentUser(); // aynı kullanıcıyı sonraki girişlerde hatırlamamıza yarar
+        mUser = mAuth.getCurrentUser();
+
         login();
 
+        if(mUser==null)
+        {
+            register();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    //mreference initialize
+                    mReference = FirebaseDatabase.getInstance().getReference();
+
+                    addLecture(); //öğrenciye dersleri ekleme methodunu çağırır
+                    addLectureSchedule(); //öğrenciye ders programı ekleme methodunu çağırır
+
+
+                }
+            }, 1000);   //1 seconds
+        }
+
+        //mUser = mAuth.getCurrentUser(); // aynı kullanıcıyı sonraki girişlerde hatırlamamıza yarar
 
 
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                //mreference initialize
-                mReference = FirebaseDatabase.getInstance().getReference();
 
-                addLecture(); //öğrenciye dersleri ekleme methodunu çağırır
-                addLectureSchedule(); //öğrenciye ders programı ekleme methodunu çağırır
-            }
-        }, 1000);   //1 seconds
     }
 
 
@@ -183,8 +192,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void login()
     {
-        txtEmail="fatmatolan@posta.mu.edu.tr";
-        txtPassword ="123beyza";
+        txtEmail="mustafaayerdem@posta.mu.edu.tr";
+        txtPassword ="123mustafa";
 
         if(!TextUtils.isEmpty(txtEmail) && !TextUtils.isEmpty((txtPassword)))
         {
@@ -252,6 +261,7 @@ public class MainActivity extends AppCompatActivity {
     //öğrenciye Firebase üzerinde sahip olduğu dersleri ekler
     public void addLecture()
     {
+
         String[] lectureList={"Mobile Application and Development", "Artifical Intelligence", "Natural Language Processing","Database"};
         mUser = mAuth.getCurrentUser();  //aktif giriş yapanın bilgilerini alır. Onu hatırlamamızı sağlar
 
