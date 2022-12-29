@@ -174,8 +174,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void login()
     {
-        txtEmail="mustafaayerdem@posta.mu.edu.tr";
-        txtPassword ="123mustafa";
+        txtEmail="fatmatolan@posta.mu.edu.tr";
+        txtPassword ="123beyza";
 
         if(!TextUtils.isEmpty(txtEmail) && !TextUtils.isEmpty((txtPassword)))
         {
