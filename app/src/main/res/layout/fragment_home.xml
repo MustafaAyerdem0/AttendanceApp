@@ -4,52 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:background="@drawable/home_bg">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_scanQr"
-        android:layout_width="270dp"
+        android:layout_width="300dp"
         android:layout_height="123dp"
+        android:layout_marginBottom="304dp"
+        android:background="@drawable/brn_bg"
         android:text="SCAN QR CODE"
-        app:layout_constraintBottom_toTopOf="@+id/text_home"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_attendance"
-        android:layout_width="271dp"
-        android:layout_height="39dp"
+        android:layout_width="157dp"
+        android:layout_height="80dp"
+        android:background="@drawable/btn_child"
         android:onClick="goToAttendance"
         android:text="ATTENDANCE"
-        app:layout_constraintBottom_toTopOf="@+id/btn_lectureschedule"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_lectureschedule"
+        app:layout_constraintHorizontal_bias="0.725"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_home" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_scanQr"
+        app:layout_constraintVertical_bias="0.327" />
 
     <Button
         android:id="@+id/btn_lectureschedule"
-        android:layout_width="271dp"
-        android:layout_height="39dp"
+        android:layout_width="157dp"
+        android:layout_height="80dp"
+        android:background="@drawable/btn_child"
         android:onClick="goToLectureSchedule"
         android:text="LECTURE SCHEDULE"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.854"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_home" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_scanQr"
+        app:layout_constraintVertical_bias="0.327" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="463dp"
+        android:layout_height="300dp"
+        android:src="@mipmap/graduate_png"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"></ImageView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

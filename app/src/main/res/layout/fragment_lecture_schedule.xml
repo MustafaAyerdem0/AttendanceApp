@@ -14,9 +14,15 @@
         android:fontFamily="sans-serif-black"
         android:text="Lecture Schedule"
         android:textAlignment="center"
-        android:textColor="#783ECA"
-        android:textSize="47sp"
-        android:background="#ECAFAF"/>
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        android:background="@drawable/lecture_attendance_header"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"/>
 
     <ListView
         android:id="@+id/lst"
