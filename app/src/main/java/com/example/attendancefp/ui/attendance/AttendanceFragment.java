@@ -6,11 +6,15 @@ import static com.example.attendancefp.MainActivity.mUser;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.attendancefp.MainActivity;
@@ -23,11 +27,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class AttendanceFragment extends Fragment {
+import java.util.ArrayList;
+
+public class AttendanceFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private DatabaseReference mmReference;
     //private FirebaseUser mUser;
     //private FirebaseAuth mAuth;
+    ArrayList<String> Lectures = new ArrayList<String>(); ;
+    ListView listView ;
+    ArrayAdapter adapter;
 
     public AttendanceFragment() {
         // Required empty public constructor
@@ -40,8 +49,6 @@ public class AttendanceFragment extends Fragment {
 
         //mUser = mAuth.getCurrentUser();
         //mmReference=FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid());
-
-        ListLectureAttendance();
     }
 
     @Override
@@ -50,6 +57,15 @@ public class AttendanceFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_attendance, container, false);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        listView =(ListView)view.findViewById(R.id.lst);
+        ListLectureAttendance();
+    }
+
 
     public void ListLectureAttendance()
     {
@@ -64,10 +80,22 @@ public class AttendanceFragment extends Fragment {
                 System.out.println(snapshot.getValue());
                 for(DataSnapshot snp: snapshot.getChildren())
                 {
-                    System.out.println(snp.getChildren());
+
+                    //System.out.println(snp.getValue());
+                    System.out.println(snp.getKey()+ " = " +snp.getValue());
+                    Lectures.add(snp.getKey()+ "\n\n" +snp.getValue());
+                    System.out.println("----------uuuuuuuuuu-------------------");
+                    //System.out.println(snp.getChildren());
                 }
 
+
+                adapter = new ArrayAdapter<String>(getContext(), R.layout.lectures_schedule_text_setting_layout,Lectures);
+                listView.setAdapter(adapter);
+                //listView.setOnItemClickListener(this);
+
             }
+
+
 
             //herhangi bir hata vs gerçekleşirse çalışacak olan kod
             @Override
@@ -76,5 +104,12 @@ public class AttendanceFragment extends Fragment {
             }
         });
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if(i==0){
+            Toast.makeText(getActivity(),"NLP", Toast.LENGTH_SHORT).show();
+        }
     }
 }

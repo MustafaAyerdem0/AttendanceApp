@@ -1,211 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center"
-    android:orientation="vertical" >
+    android:layout_height="match_parent"
+    >
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Lecture Attendance"
+        android:textAlignment="center"
+        android:textColor="#783ECA"
+        android:textSize="42sp"
+        android:background="#ECAFAF"/>
 
-    <TableLayout
+    <ListView
+        android:id="@+id/lst"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff"
-        android:layout_alignParentBottom="true">
+        android:paddingLeft="10dp"
 
-        <!-- Row 2 with 3 columns -->
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textAlignment="center">
 
 
-        <TableRow
-            android:id="@+id/tableRow0"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0">
-
-            <TextView
-                android:id="@+id/lecturescolumn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="#dcdcdc"
-                android:gravity="center"
-                android:padding="20dip"
-                android:text="LECTURES"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/attendancecolumn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="#d3d3d3"
-                android:gravity="center"
-                android:padding="20dip"
-                android:text="ATTENDANCE"
-                android:textColor="#000000" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/lecturesrow1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="#dcdcdc"
-                android:gravity="center"
-                android:padding="20dip"
-                android:text="Mobile Application Development"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/attendancerow1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="#d3d3d3"
-                android:gravity="center"
-                android:padding="20dip"
-                android:text="12 Lessons"
-                android:textColor="#000000" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/lecturesrow2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="#dcdcdc"
-                android:gravity="center"
-                android:padding="20dip"
-                android:text="Artifical Intelligence"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/attendancerow2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="#d3d3d3"
-                android:gravity="center"
-                android:padding="20dip"
-                android:text="9 Lessons"
-                android:textColor="#000000" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/lecturesrow3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="#d3d3d3"
-                android:gravity="center"
-                android:padding="20dip"
-                android:text="Natural Language Processing"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/attendancerow3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="#d3d3d3"
-                android:gravity="center"
-                android:padding="20dip"
-                android:text="4 Lessons"
-                android:textColor="#000000" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/lecturesrow4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="#d3d3d3"
-                android:gravity="center"
-                android:padding="20dip"
-                android:text="Computer Networks"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/attendancerow4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:background="#d3d3d3"
-                android:gravity="center"
-                android:padding="20dip"
-                android:text="6 Lessons"
-                android:textColor="#000000" />
-
-        </TableRow>
-
-    </TableLayout>
-
-</RelativeLayout>
+    </ListView>
+</LinearLayout>
