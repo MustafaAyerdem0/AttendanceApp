@@ -1,6 +1,7 @@
 package com.example.attendancefp;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Menu;
@@ -98,11 +99,19 @@ public class MainActivity extends AppCompatActivity {
         //mUser = mAuth.getCurrentUser(); // aynı kullanıcıyı sonraki girişlerde hatırlamamıza yarar
         login();
 
-        //mreference initialize
-        mReference = FirebaseDatabase.getInstance().getReference();
 
-        addLecture(); //öğrenciye dersleri ekleme methodunu çağırır
-        addLectureSchedule(); //öğrenciye ders programı ekleme methodunu çağırır
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                //mreference initialize
+                mReference = FirebaseDatabase.getInstance().getReference();
+
+                addLecture(); //öğrenciye dersleri ekleme methodunu çağırır
+                addLectureSchedule(); //öğrenciye ders programı ekleme methodunu çağırır
+            }
+        }, 1000);   //1 seconds
     }
 
 
@@ -211,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
     {
         mUser = mAuth.getCurrentUser();
 
-        System.out.println( "user ınfo ::: "+mReference.child("Users").child(mUser.getUid()).child("userEmail") ) ;
+        //System.out.println( "user ınfo ::: "+mReference.child("Users").child(mUser.getUid()).child("userEmail") ) ;
         mReference= FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid());
         mReference.addValueEventListener(new ValueEventListener() {
             @Override
