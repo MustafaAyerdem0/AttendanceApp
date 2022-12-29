@@ -19,17 +19,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.attendancefp.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.attendancefp.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-    <fragment
         android:id="@+id/attendanceFragment"
         android:name="com.example.attendancefp.ui.attendance.AttendanceFragment"
         android:label="fragment_attendance"
@@ -48,4 +37,13 @@
         android:id="@+id/nav_profile"
         android:name="com.example.attendancefp.ui.profile.ProfileFragment"
         android:label="@string/menu_profile" />
+    <fragment
+        android:id="@+id/nav_preferences"
+        android:name="com.example.attendancefp.ui.Preferences.PreferencesFragment"
+        android:label="@string/menu_preferences" />
+    <fragment
+        android:id="@+id/nav_contact_support"
+        android:name="com.example.attendancefp.ui.ContactSupport.ContactSupportFragment"
+        android:label="@string/menu_contact_support"
+        tools:layout="@layout/fragment_contact_support" />
 </navigation>
