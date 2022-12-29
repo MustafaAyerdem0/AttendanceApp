@@ -1,13 +1,18 @@
 package com.example.attendancefp.ui.home;
 
+import static com.example.attendancefp.MainActivity.mAuth;
+import static com.example.attendancefp.MainActivity.mUser;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
@@ -20,13 +25,22 @@ import androidx.navigation.Navigation;
 import com.example.attendancefp.MainActivity;
 import com.example.attendancefp.R;
 import com.example.attendancefp.databinding.FragmentHomeBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.journeyapps.barcodescanner.CaptureActivity;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
+import java.util.HashMap;
+
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private DatabaseReference mReference;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -94,6 +108,55 @@ public class HomeFragment extends Fragment {
                     dialogInterface.dismiss();
                 }
             }).show();
+
+
+
+            mUser = mAuth.getCurrentUser(); //giriş yapan kullanıcının bilgilerini alıyoruz bu işlemle
+            HashMap hashMap = new HashMap();
+
+
+            mReference= FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("Lectures");
+
+            //sadece bir kez çalışır
+            mReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                    for(DataSnapshot snp: snapshot.getChildren())
+                    {
+
+                        if(snp.getKey().equals(result.getContents())){
+                            String newValue = snp.getValue().toString();
+                            int value=Integer.parseInt(newValue);
+                            int sonvalue=value+1;
+
+
+                            System.out.println(value);
+
+                            System.out.println("------------------"+(Integer.parseInt(snp.getValue().toString())));
+                            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                            hashMap.put(snp.getKey(), sonvalue);
+                            mReference.updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                                @Override
+                                public void onSuccess(Object o) {
+                                    Toast.makeText(getActivity(),"Lecture Attendance is updated",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            return;
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+
         }
     });
 
