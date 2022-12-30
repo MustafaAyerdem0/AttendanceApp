@@ -29,6 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+
+//TOGETHER
 public class AttendanceFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private DatabaseReference mmReference;
@@ -46,10 +48,7 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemCl
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //mUser = mAuth.getCurrentUser();
-        //mmReference=FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid());
-    }
+       }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +62,8 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemCl
         super.onViewCreated(view, savedInstanceState);
 
         listView =(ListView)view.findViewById(R.id.lst);
+        adapter = new ArrayAdapter<String>(getContext(), R.layout.lectures_schedule_text_setting_layout,Lectures);
+
         ListLectureAttendance();
     }
 
@@ -80,21 +81,15 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemCl
                 System.out.println(snapshot.getValue());
                 for(DataSnapshot snp: snapshot.getChildren())
                 {
-
-                    //System.out.println(snp.getValue());
                     System.out.println(snp.getKey()+ " = " +snp.getValue());
                     Lectures.add(snp.getKey()+ "\n\n" +snp.getValue());
-                    System.out.println("----------uuuuuuuuuu-------------------");
-                    //System.out.println(snp.getChildren());
+
                 }
 
-
-                adapter = new ArrayAdapter<String>(getContext(), R.layout.lectures_schedule_text_setting_layout,Lectures);
                 listView.setAdapter(adapter);
                 //listView.setOnItemClickListener(this);
 
             }
-
 
 
             //herhangi bir hata vs gerçekleşirse çalışacak olan kod

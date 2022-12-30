@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
-
     private String txtEmail, txtPassword, txtName;  // for register
     public static FirebaseAuth mAuth;
 
@@ -70,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        //FATMA BEYZANUR TOLAN
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
@@ -92,13 +93,15 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //////// our Methods
 
+        //////// Methods FATMA BEYZANUR TOLAN
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
         login();
 
+
+        ///MUSTAFA AYERDEM
         if(mUser==null)
         {
             register();
@@ -118,12 +121,10 @@ public class MainActivity extends AppCompatActivity {
 
         //mUser = mAuth.getCurrentUser(); // aynı kullanıcıyı sonraki girişlerde hatırlamamıza yarar
 
-
-
-
     }
 
 
+    //TOGETHER
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -131,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
+    //TOGETHER
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -138,9 +141,9 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    //////////// our Methods
+    //////////// Methods
 
-
+    //FATMA BEYZANUR TOLAN
     //Register sayfası varmış gibi kayıt alır
     public void register()
     {
@@ -190,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    //FATMA BEYZANUR TOLAN
     public void login()
     {
         txtEmail="mustafaayerdem@posta.mu.edu.tr";
@@ -207,7 +212,6 @@ public class MainActivity extends AppCompatActivity {
                             System.out.println("Kullanıcı Uid : "+ mUser.getUid());
 
                             //kullanıcı isim soyisim ve email bilgilerini nav header a yazdır
-
                             userInfo();
 
 
@@ -224,12 +228,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    //FATMA BEYZANUR TOLAN
     // nav header da user bilgisi güncelleme login yapana göre
     public void userInfo()
     {
         mUser = mAuth.getCurrentUser();
 
-        //System.out.println( "user ınfo ::: "+mReference.child("Users").child(mUser.getUid()).child("userEmail") ) ;
         mReference= FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid());
         mReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -258,6 +263,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    //FATMA BEYZANUR TOLAN
     //öğrenciye Firebase üzerinde sahip olduğu dersleri ekler
     public void addLecture()
     {
@@ -284,6 +291,8 @@ public class MainActivity extends AppCompatActivity {
                 });  //users ta Lecture altına mLEctureData ları eklememize yarıyor bu setValue
     }
 
+
+    //FATMA BEYZANUR TOLAN
     public void addLectureSchedule()
     {
         String[] lectureList={"Mobile Application and Development", "Artifical Intelligence", "Natural Language Processing","Database Management System"};

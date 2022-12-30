@@ -30,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
-
+//MUSTAFA AYERDEM
 public class LectureSchedule extends Fragment implements AdapterView.OnItemClickListener {
 
     private DatabaseReference mReference;
@@ -47,8 +47,6 @@ public class LectureSchedule extends Fragment implements AdapterView.OnItemClick
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
     }
 
     @Override
@@ -58,26 +56,15 @@ public class LectureSchedule extends Fragment implements AdapterView.OnItemClick
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lecture_schedule, container, false);
 
-
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //btn = (Button) requireView().findViewById(R.id.btton);
-
-        //Lectures.add("web");
-
-
-        //btn.setOnClickListener(this::onClick);
-
-        //ListSchedule();
 
         listView =(ListView)view.findViewById(R.id.lst);
+        adapter = new ArrayAdapter<String>(getContext(), R.layout.lectures_schedule_text_setting_layout,Lectures);
         ListSchedule();
-
-
 
 
     }
@@ -90,20 +77,8 @@ public class LectureSchedule extends Fragment implements AdapterView.OnItemClick
 
     }
 
-/*
-    public void onClick(View v) {
-        //Lectures.add("NLP"+"                   "+"Monday 12:00 - 14:50");
-        adapter = new ArrayAdapter<String>(getContext(), R.layout.lectures_schedule_text_setting_layout,Lectures);
-        Lectures.add("sdkfsdf");
-        listView.setAdapter(adapter);
-        //listView.setOnItemClickListener(this);
-
-    }
-*/
     public void ListSchedule()
     {
-
-
 
         mUser = mAuth.getCurrentUser(); //giriş yapan kullanıcının bilgilerini alıyoruz bu işlemle
 
@@ -115,15 +90,11 @@ public class LectureSchedule extends Fragment implements AdapterView.OnItemClick
                 System.out.println(snapshot.getValue());
                 for(DataSnapshot snp: snapshot.getChildren())
                 {
-                    System.out.println(snp.getValue());
-                    System.out.println(snp.getKey()+ " = " +snp.getValue());
                     Lectures.add(snp.getKey()+ "\n\n" +snp.getValue());
-                    System.out.println(Lectures+"----------*****************-------------------");
+
                 }
 
-                adapter = new ArrayAdapter<String>(getContext(), R.layout.lectures_schedule_text_setting_layout,Lectures);
                 listView.setAdapter(adapter);
-                //listView.setOnItemClickListener(this);
 
             }
 
@@ -134,11 +105,6 @@ public class LectureSchedule extends Fragment implements AdapterView.OnItemClick
             }
         });
 
-
-
-
     }
-
-
 
 }

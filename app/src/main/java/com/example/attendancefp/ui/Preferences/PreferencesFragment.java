@@ -18,6 +18,7 @@ import com.example.attendancefp.databinding.FragmentAboutBinding;
 import com.example.attendancefp.databinding.FragmentPreferencesBinding;
 import com.example.attendancefp.ui.about.AboutViewModel;
 
+//TOGETHER
 public class PreferencesFragment extends Fragment {
     private FragmentPreferencesBinding binding;
 

@@ -18,6 +18,8 @@ import com.example.attendancefp.databinding.FragmentAboutBinding;
 import com.example.attendancefp.databinding.FragmentContactSupportBinding;
 import com.example.attendancefp.ui.about.AboutViewModel;
 
+
+//MUSTAFA AYERDEM
 public class ContactSupportFragment extends Fragment {
     private FragmentContactSupportBinding binding;
 

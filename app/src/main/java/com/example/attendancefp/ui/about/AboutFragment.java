@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.attendancefp.databinding.FragmentAboutBinding;
 
+//TOGETHER
 public class AboutFragment extends Fragment {
     private FragmentAboutBinding binding;
 

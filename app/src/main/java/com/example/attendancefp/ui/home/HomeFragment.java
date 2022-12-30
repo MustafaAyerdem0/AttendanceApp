@@ -37,11 +37,12 @@ import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.util.HashMap;
 
+
+//TOGETHER
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private DatabaseReference mReference;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,8 +51,6 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-
 
         return root;
     }
@@ -110,10 +109,9 @@ public class HomeFragment extends Fragment {
             }).show();
 
 
-
+            //FATMA  BEYZANUR TOLAN
             mUser = mAuth.getCurrentUser(); //giriş yapan kullanıcının bilgilerini alıyoruz bu işlemle
             HashMap hashMap = new HashMap();
-
 
             mReference= FirebaseDatabase.getInstance().getReference("Users").child(mUser.getUid()).child("Lectures");
 
@@ -121,7 +119,6 @@ public class HomeFragment extends Fragment {
             mReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-
 
                     for(DataSnapshot snp: snapshot.getChildren())
                     {

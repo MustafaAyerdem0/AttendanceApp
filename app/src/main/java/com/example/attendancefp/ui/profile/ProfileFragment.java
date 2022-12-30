@@ -18,6 +18,7 @@ import com.example.attendancefp.databinding.FragmentAboutBinding;
 import com.example.attendancefp.databinding.FragmentProfileBinding;
 import com.example.attendancefp.ui.about.AboutViewModel;
 
+//MUSTAFA AYERDEM
 public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;
