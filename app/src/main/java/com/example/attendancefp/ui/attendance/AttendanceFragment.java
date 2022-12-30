@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 
 //TOGETHER
-public class AttendanceFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class AttendanceFragment extends Fragment {
 
     private DatabaseReference mmReference;
     //private FirebaseUser mUser;
@@ -101,10 +101,5 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemCl
 
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if(i==0){
-            Toast.makeText(getActivity(),"NLP", Toast.LENGTH_SHORT).show();
-        }
-    }
+
 }

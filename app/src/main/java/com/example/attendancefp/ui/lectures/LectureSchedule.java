@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 //MUSTAFA AYERDEM
-public class LectureSchedule extends Fragment implements AdapterView.OnItemClickListener {
+public class LectureSchedule extends Fragment  {
 
     private DatabaseReference mReference;
 
@@ -69,13 +69,7 @@ public class LectureSchedule extends Fragment implements AdapterView.OnItemClick
 
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if(i==0){
-            Toast.makeText(getActivity(),"NLP", Toast.LENGTH_SHORT).show();
-        }
 
-    }
 
     public void ListSchedule()
     {
